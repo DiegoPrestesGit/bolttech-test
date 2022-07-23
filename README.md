@@ -11,7 +11,7 @@
     - [ ] (refresh token?)
 - [ ] CRUD of projects
   - [x] add
-  - [ ] show
+  - [x] show
   - [ ] edit
   - [ ] remove
 - [ ] CRUD of tasks [that are related to the project]

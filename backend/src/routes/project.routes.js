@@ -3,7 +3,8 @@ import { Router } from 'express'
 import {
   createProject,
   findAllProjectsByUserId,
-  updateProjectById
+  updateProjectById,
+  deleteProjectById
 } from '../api/projects.js'
 
 const projectRouter = Router()
@@ -11,6 +12,6 @@ const projectRouter = Router()
 projectRouter.post('/create', createProject)
 projectRouter.get('/find-all', findAllProjectsByUserId)
 projectRouter.put('/modify', updateProjectById)
-projectRouter.delete('/remove', (req, res) => res.json({ TODO: 'IMPLEMENT' }))
+projectRouter.delete('/remove', deleteProjectById)
 
 export default projectRouter

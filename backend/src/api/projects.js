@@ -2,7 +2,8 @@ import {
   createProjectMongo,
   findAllProjectsByUserIdMongo,
   findUserByEmailMongo,
-  updateProjectByIdMongo
+  updateProjectByIdMongo,
+  deleteProjectByIdMongo
 } from '../handlers/mongo.js'
 
 const checkUserExists = email => findUserByEmailMongo(email)
@@ -59,11 +60,6 @@ export const updateProjectById = async (request, response) => {
       message: 'invalid dates: the startDate is bigger than the finishDate'
     })
 
-  if (!(await checkUserExists(userEmail)))
-    return response.json({
-      message: "the user you are trying to add a project doesn't exist!"
-    })
-
   const updatedProject = await updateProjectByIdMongo(userEmail, id, {
     name,
     startDate,
@@ -76,4 +72,12 @@ export const updateProjectById = async (request, response) => {
     })
 
   return response.json(updatedProject)
+}
+
+export const deleteProjectById = async (request, response) => {
+  const { userEmail, id } = request.query
+
+  const delationResponse = await deleteProjectByIdMongo(userEmail, id)
+
+  return response.json(delationResponse)
 }

@@ -40,7 +40,7 @@ export const deleteProjectByIdMongo = async (userEmail, _id) => {
   try {
     const project = await Project.findOne({ _id })
 
-    if (project === null) return undefined
+    if (project === null) return { message: 'project not found' }
 
     if (!checkUserIsProjectOwner(userEmail, project))
       return { message: 'this user is not the owner of the project!' }
@@ -52,4 +52,14 @@ export const deleteProjectByIdMongo = async (userEmail, _id) => {
 
     return { message: 'project deleted successfully' }
   } catch (err) {}
+}
+
+export const findOneProjectsById = async (userEmail, _id) => {
+  const project = await Project.findOne({ _id })
+  if (project === null) return undefined
+
+  if (!checkUserIsProjectOwner(userEmail, project))
+    return { message: 'this user is not the owner of the project!' }
+
+  return project
 }

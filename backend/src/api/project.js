@@ -1,14 +1,11 @@
 import {
   createProjectMongo,
   findAllProjectsByUserIdMongo,
-  findUserByEmailMongo,
   updateProjectByIdMongo,
   deleteProjectByIdMongo
 } from '../handlers/mongo.js'
 
-const checkUserExists = email => findUserByEmailMongo(email)
-const validateDates = (startDate, finishDate) =>
-  new Date(startDate) < new Date(finishDate)
+import { checkUserExists, validateDates } from './utils.js'
 
 export const createProject = async (request, response) => {
   try {

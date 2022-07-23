@@ -3,5 +3,6 @@ export {
   createProjectMongo,
   deleteProjectByIdMongo,
   findAllProjectsByUserIdMongo,
-  updateProjectByIdMongo
+  updateProjectByIdMongo,
+  findOneProjectsById
 } from './project.js'

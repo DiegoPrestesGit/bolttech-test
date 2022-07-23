@@ -5,7 +5,7 @@ import {
   findAllProjectsByUserId,
   updateProjectById,
   deleteProjectById
-} from '../api/projects.js'
+} from '../api/project.js'
 
 const projectRouter = Router()
 

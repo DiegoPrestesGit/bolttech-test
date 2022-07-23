@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { createUser, getUserById } from '../api/user.js'
+import { createUser, getUserByEmail } from '../api/user.js'
 
 const userRouter = Router()
 
 userRouter.post('/create', createUser)
-userRouter.get('/find/:id', getUserById)
+userRouter.get('/find', getUserByEmail)
 
 export default userRouter

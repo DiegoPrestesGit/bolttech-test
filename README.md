@@ -26,10 +26,10 @@
 - [ ] jest unit tests
 - [ ] configure gulp
 - [ ] use jsdocs for function documentation
-- [ ] firebase for social auth
+- [ ] implement PostgreSQL for relationships between users, projects and tasks
 - [ ] docker *maybe laybe do beibe la diroleibe*
 
-### REQUIREMENTS (miscellaneous)
+### REQUIREMENTS (miscellaneous, but not less important)
 
 - [ ] one user may have several projects
 - [ ] one user can access his projects only

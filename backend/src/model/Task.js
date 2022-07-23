@@ -11,10 +11,12 @@ const TaskSchema = new mongoose.Schema(
       trim: true,
       unique: false
     },
-    name: { type: String },
+    description: { type: String },
+    notes: { type: String },
     projectId: { type: String },
     startDate: { type: String },
     finishDate: { type: String },
+    isFinished: { type: Boolean },
     createdAt: { type: Date, default: tmzPt },
     updatedAt: { type: Date, default: tmzPt }
   },

@@ -1,15 +1,15 @@
-import { create, findUserByEmail } from '../handlers/mongo.js'
+import { createUserMongo, findUserByEmailMongo } from '../handlers/mongo.js'
 
 export const createUser = async (request, response) => {
   const { email, name, password } = request.body
-  const newUser = await create(email, name, password)
+  const newUser = await createUserMongo(email, name, password)
 
   return response.json(newUser)
 }
 
-export const getUserByEmail = async (request, response) => {
+export const findUserByEmail = async (request, response) => {
   const { email } = request.query
-  const user = await findUserByEmail(email)
+  const user = await findUserByEmailMongo(email)
 
   return response.json(user)
 }

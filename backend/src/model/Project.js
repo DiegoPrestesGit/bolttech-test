@@ -9,16 +9,15 @@ const ProjectSchema = new mongoose.Schema(
       type: String,
       lowercase: true,
       trim: true,
-      unique: true
+      unique: false
     },
     name: { type: String },
-
     createdAt: { type: Date, default: tmzPt },
     updatedAt: { type: Date, default: tmzPt }
   },
   { strict: false, versionKey: false, timestamps: false }
 )
 
-const Project = mongoose.model('Projects', ProjectSchema)
+const Project = mongoose.model('projects', ProjectSchema)
 
 export default Project

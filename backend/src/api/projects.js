@@ -1,15 +1,23 @@
-// import { findAll, createProject, modifyProject, removeProject } from '../handlers/mongo.js'
+import { createProjectMongo, findUserByEmailMongo } from '../handlers/mongo.js'
 
-export const findAll = async (request, response) => {
-  const { email, name, password } = request.body
-  const newUser = await create(email, name, password)
+// export const findAll = async (request, response) => {
+//   const { email, name, password } = request.body
+//   const newUser = await create(email, name, password)
 
-  return response.json(newUser)
-}
+//   return response.json(newUser)
+// }
 
 export const createProject = async (request, response) => {
-  const { email } = request.query
-  const user = await findUserByEmail(email)
+  try {
+    const { userEmail, name } = request.body
 
-  return response.json(user)
+    const userExists = await findUserByEmailMongo(userEmail)
+    if (!userExists)
+      return response.json({
+        message: "the user you are trying to add a project doesn't exist!"
+      })
+
+    const newProject = await createProjectMongo(userEmail, name)
+    return response.json(newProject)
+  } catch (err) {}
 }

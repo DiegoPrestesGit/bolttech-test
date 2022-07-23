@@ -10,7 +10,7 @@
   - [ ] logout
     - [ ] (refresh token?)
 - [ ] CRUD of projects
-  - [ ] add
+  - [x] add
   - [ ] show
   - [ ] edit
   - [ ] remove

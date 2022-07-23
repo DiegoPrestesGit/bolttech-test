@@ -12,7 +12,7 @@
 - [ ] CRUD of projects
   - [x] add
   - [x] show
-  - [ ] edit
+  - [x] edit
   - [ ] remove
 - [ ] CRUD of tasks [that are related to the project]
   - [ ] add

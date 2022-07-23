@@ -1,8 +1,6 @@
 import Project from '../model/Project.js'
 import User from '../model/User.js'
 
-// findAll, createProject, modifyProject, removeProject
-
 export const createUserMongo = async (email, name, password) => {
   try {
     const findUser = await findUserByEmailMongo(email)
@@ -27,19 +25,32 @@ export const findUserByEmailMongo = async email => {
   }
 }
 
-export const createProjectMongo = async (userEmail, name) => {
+export const createProjectMongo = async (userEmail, projectData) => {
   try {
-    const project = await Project({ userEmail, name }).save()
+    const project = await Project({ userEmail, ...projectData }).save()
 
     return project
   } catch (err) {}
 }
 
-export const findAllProjectsMongoByUserId = async userEmail => {
+export const findAllProjectsByUserIdMongo = async userEmail => {
   try {
     const projects = await Project.find({ userEmail })
     return projects
   } catch (err) {
     throw Error('error when trying to find user projects in mongoDB')
   }
+}
+
+export const updateProjectByIdMongo = async (userEmail, _id, projectData) => {
+  try {
+    const project = await Project.findOne({ _id })
+
+    if (project === null) return undefined
+
+    const updatedProject = { ...projectData, userEmail }
+    const projectSaved = await Project(updatedProject).save()
+
+    return projectSaved
+  } catch (err) {}
 }

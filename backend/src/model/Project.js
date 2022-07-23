@@ -12,6 +12,8 @@ const ProjectSchema = new mongoose.Schema(
       unique: false
     },
     name: { type: String },
+    startDate: { type: String },
+    finishDate: { type: String },
     createdAt: { type: Date, default: tmzPt },
     updatedAt: { type: Date, default: tmzPt }
   },

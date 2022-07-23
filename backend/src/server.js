@@ -1,5 +1,5 @@
 import express from 'express'
-import { startMongo } from './config/mongo.js'
+import { startMongo } from './configs/mongo.js'
 
 import router from './routes/index.routes.js'
 

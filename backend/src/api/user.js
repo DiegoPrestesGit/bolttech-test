@@ -1,4 +1,4 @@
-import { create } from '../config/mongo.js'
+import { create } from '../handlers/mongo.js'
 
 export const createUser = async (request, response) => {
   const { email, name, password } = request.body

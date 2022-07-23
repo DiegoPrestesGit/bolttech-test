@@ -4,7 +4,7 @@
 
 ### BACKEND
 
-- [ ] user registration
+- [x] user registration
 - [ ] user authentication
   - [ ] login
   - [ ] logout
@@ -46,6 +46,7 @@
 
 ### BOTH
 
+- [ ] threat exceptions in both ends
 - [ ] finished tasks should not be able to edit, nor remove (but am I able to **undone**?)
 - [ ] encode user's password and authentication ([like this](https://cloud.google.com/blog/products/identity-security/account-authentication-and-password-management-best-practices))
 

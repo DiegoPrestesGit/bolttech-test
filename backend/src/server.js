@@ -1,4 +1,5 @@
 import express from 'express'
+import { startMongo } from './config/mongo.js'
 
 import router from './routes/index.routes.js'
 
@@ -6,4 +7,4 @@ const app = express()
 app.use(express.json())
 app.use(router)
 
-app.listen(3000, port => `running on ${port}`)
+startMongo().then(() => app.listen(3000, port => `running on ${port}`))

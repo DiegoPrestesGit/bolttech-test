@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose'
-import { tz } from 'moment-timezone'
+import mongoose from 'mongoose'
+import moment from 'moment-timezone'
 
-const tmzPt = tz(Date.now(), 'Portugal')
+const tmzPt = moment.tz(Date.now(), 'Portugal')
 
-const UserSchema = new Schema(
+const UserSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -19,6 +19,6 @@ const UserSchema = new Schema(
   { strict: false, versionKey: false, timestamps: false }
 )
 
-const User = model('users', UserSchema)
+const User = mongoose.model('users', UserSchema)
 
 export default User

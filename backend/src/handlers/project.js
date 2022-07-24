@@ -21,15 +21,8 @@ export const findAllProjectsByUserIdMongo = async userEmail => {
 
 export const updateProjectByIdMongo = async (userEmail, _id, projectData) => {
   try {
-    const project = await Project.findOne({ _id })
-
-    if (project === null) return undefined
-
-    if (!checkUserIsProjectOwner(userEmail, project))
-      return { message: 'this user is not the owner of the project!' }
-
     const updatedProject = { ...projectData, userEmail }
-    await Project.updateOne(updatedProject)
+    await Project.findOneAndUpdate({ _id }, updatedProject)
 
     return updatedProject
   } catch (err) {}

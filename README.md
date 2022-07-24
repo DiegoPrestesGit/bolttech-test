@@ -6,7 +6,7 @@
 
 - [x] user registration
 - [ ] user authentication
-  - [ ] login
+  - [ ] basic login
     - [ ] create a jwt for session
   - [ ] logout
     - [ ] (refresh token?)
@@ -15,7 +15,7 @@
   - [x] show
   - [x] edit
   - [x] remove
-- [ ] CRUD of tasks [that are related to the project]
+- [x] CRUD of tasks [that are related to the project]
   - [x] add
   - [x] show
   - [x] edit
@@ -42,8 +42,11 @@
 ### FRONTEND
 
 - [ ] web app skeleton
+- [ ] implement mock screen
+- [ ] configure axios
+- [ ] remove mocks and fetch data from the backend
 - [ ] task's finish date visible in the tooltip, and a status identifier (todo, doing, done(?)) => Microsoft TODO for inspiration
-- [ ] tasks added or deleted should not refresh the full page, that is bad for the user, brah
+- [ ] tasks added or deleted should not refresh the full page, that is bad for the user
 - [ ] add gulp.js for build
 
 ### BOTH

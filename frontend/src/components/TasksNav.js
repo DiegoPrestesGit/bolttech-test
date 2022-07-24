@@ -7,8 +7,8 @@ import {
   TasksContainer,
   TaskOptions,
   ProjectName,
+  AddTaskButton,
 } from "./tasksnav-styles";
-import { AddProjectButton } from "./navbar-styles";
 
 function TasksNav() {
   return (
@@ -16,9 +16,9 @@ function TasksNav() {
       <Container>
         <TaskOptions>
           <ProjectName>ProjectName</ProjectName>
-          <AddProjectButton onClick={() => console.log("ADD TASK")}>
+          <AddTaskButton onClick={() => console.log("ADD TASK")}>
             Add Task
-          </AddProjectButton>
+          </AddTaskButton>
         </TaskOptions>
         <TasksContainer>
           <ProjectName>DOING</ProjectName>

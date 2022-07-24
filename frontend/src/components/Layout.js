@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Topbar, TasksNav } from "./index";
+import { Navbar, Topbar, TasksNav, Details } from "./index";
 import { Grid } from "./layout-styles";
 
 function Layout() {
@@ -8,6 +8,7 @@ function Layout() {
       <Topbar />
       <Navbar />
       <TasksNav />
+      <Details />
     </Grid>
   );
 }

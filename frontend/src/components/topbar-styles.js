@@ -27,9 +27,11 @@ export const UserContainer = styled.div`
 `;
 
 export const UserLogout = styled.button`
-  width: 70px;
+  width: 80px;
+  height: 30px;
+  font-size: 18px;
   background-color: var(--nice-purple);
-  border-radius: 10px;
+  border-radius: 50px;
   color: var(--white);
 
   :hover {

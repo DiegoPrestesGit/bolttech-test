@@ -10,7 +10,8 @@ export const Container = styled.div`
   justify-content: flex-start;
   background-color: var(--tertiary);
   height: 100vh;
-  width: 200px;
+  width: 300px;
+  color: var(--white);
 `;
 
 export const ProjectsContainer = styled.div`

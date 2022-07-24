@@ -6,7 +6,7 @@
 
 - [x] user registration
 - [ ] user authentication
-  - [ ] basic login
+  - [x] basic login
     - [ ] create a jwt for session
   - [ ] logout
     - [ ] (refresh token?)

@@ -9,4 +9,4 @@ app.use(express.json())
 app.use(cors())
 app.use(router)
 
-startMongo().then(() => app.listen(3000, port => `running on ${port}`))
+startMongo().then(() => app.listen(3001, port => `running on ${port}`))

@@ -24,6 +24,7 @@
 ### BACKEND (optional)
 
 - [ ] doublecheck business rules in the api layer
+- [ ] create catches
 - [ ] input validator as a middleware
 - [ ] jest unit tests
 - [ ] use jsdocs for function documentation
@@ -32,11 +33,11 @@
 
 ### REQUIREMENTS (miscellaneous, but not less important)
 
-- [ ] one user may have several projects
-- [ ] one user can access his projects only
-- [ ] one project may have several tasks
-- [ ] TASK FIELDS: ``{description: string; creation-date: string; finish-date: string;}``
-- [ ] tasks also may be ``finished or unfinished`` (boolean?)
+- [x] one user may have several projects
+- [x] one user can access his projects only
+- [x] one project may have several tasks
+- [x] TASK FIELDS: ``{description: string; creation-date: string; finish-date: string;}``
+- [x] tasks also may be ``finished or unfinished`` (boolean?)
 
 ### FRONTEND
 

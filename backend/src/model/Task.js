@@ -16,7 +16,7 @@ const TaskSchema = new mongoose.Schema(
     projectId: { type: String },
     startDate: { type: String },
     finishDate: { type: String },
-    isFinished: { type: Boolean },
+    isFinished: { type: Boolean, default: false },
     createdAt: { type: Date, default: tmzPt },
     updatedAt: { type: Date, default: tmzPt }
   },

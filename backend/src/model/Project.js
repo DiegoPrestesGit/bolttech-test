@@ -11,6 +11,7 @@ const ProjectSchema = new mongoose.Schema(
       trim: true,
       unique: false
     },
+    isFinished: { type: Boolean, default: false },
     name: { type: String },
     startDate: { type: String },
     finishDate: { type: String },

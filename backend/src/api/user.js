@@ -11,7 +11,7 @@ export const createUser = async (request, response) => {
   const salt = bcrypt.genSaltSync(2)
   const hashedPassword = bcrypt.hashSync(password, salt)
 
-  const newUser = createUserMongo(email, name, hashedPassword)
+  const newUser = await createUserMongo(email, name, hashedPassword)
 
   return response.json(newUser)
 }

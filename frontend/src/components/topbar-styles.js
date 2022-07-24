@@ -7,7 +7,6 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: var(--quinary);
-  /* background-color: yellow; */
   width: 100%;
   height: 50px;
   color: var(--white);
@@ -31,6 +30,13 @@ export const UserLogout = styled.button`
   width: 70px;
   background-color: var(--nice-purple);
   border-radius: 10px;
+  color: var(--white);
+
+  :hover {
+    transition-duration: 0.2s;
+    background-color: var(--dark-purple);
+    font-weight: bold;
+  }
 `;
 
 export const ProjectOrganizerText = styled.div`

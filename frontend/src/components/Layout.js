@@ -1,9 +1,10 @@
 import React from "react";
-import { Navbar } from "./index";
+import { Navbar, Topbar } from "./index";
 
 function Layout() {
   return (
     <div>
+      <Topbar />
       <Navbar />
     </div>
   );

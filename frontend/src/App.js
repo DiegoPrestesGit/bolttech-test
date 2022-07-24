@@ -1,8 +1,13 @@
+import GlobalStyles from "./styles/globals";
+
 function App() {
   return (
-    <div>
-      <h1>LET'S GET STARTED</h1>
-    </div>
+    <>
+      <GlobalStyles />
+      <div>
+        <h1>LET'S GET STARTED</h1>
+      </div>
+    </>
   );
 }
 

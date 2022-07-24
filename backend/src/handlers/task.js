@@ -15,3 +15,13 @@ export const findTaskByProjectMongo = async projectId => {
     return tasks
   } catch (err) {}
 }
+
+export const updateTaskByIdMongo = async (_id, taskData) => {
+  try {
+    const task = await Task.findOneAndUpdate({ _id }, taskData)
+
+    if (task === null) return undefined
+
+    return taskData
+  } catch (err) {}
+}

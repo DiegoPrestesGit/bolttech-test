@@ -1,5 +1,5 @@
-import { findUserByEmailMongo } from '../handlers/mongo.js'
-import { findOneProjectsById } from '../handlers/mongo.js'
+import { findUserByEmailMongo } from '../handlers/user.js'
+import { findOneProjectsById } from '../handlers/project.js'
 
 export const checkUserExists = email => findUserByEmailMongo(email)
 

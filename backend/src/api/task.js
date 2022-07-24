@@ -1,4 +1,8 @@
-import { createTaskMongo, findTaskByProjectMongo } from '../handlers/task.js'
+import {
+  createTaskMongo,
+  findTaskByProjectMongo,
+  updateTaskByIdMongo
+} from '../handlers/task.js'
 import {
   checkUserExists,
   validateDates,
@@ -10,7 +14,7 @@ export const createTask = async (request, response) => {
   try {
     const { userEmail, taskData } = request.body
 
-    if (!(await checkProjectExists(userEmail, taskData.projectId)))
+    if (!(await checkProjectExists(taskData.projectId)))
       return response.json({
         message: "the project you are trying to add a task doesn't exist!"
       })
@@ -51,6 +55,22 @@ export const findAllTasksByProject = async (request, response) => {
   } catch (err) {}
 }
 
-export const updateTaskById = async (request, response) => {}
+export const updateTaskById = async (request, response) => {
+  const { userEmail, id, taskData } = request.body
+
+  if (!validateDates(taskData.startDate, taskData.finishDate))
+    return response.json({
+      message: 'invalid dates: the startDate is bigger than the finishDate'
+    })
+
+  const updatedTask = await updateTaskByIdMongo(id, taskData)
+
+  if (!updatedTask)
+    return response.json({
+      message: "the task doesn't exist!"
+    })
+
+  return response.json(updatedTask)
+}
 
 export const deleteTaskById = async (request, response) => {}

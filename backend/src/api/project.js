@@ -3,7 +3,7 @@ import {
   findAllProjectsByUserIdMongo,
   updateProjectByIdMongo,
   deleteProjectByIdMongo
-} from '../handlers/mongo.js'
+} from '../handlers/project.js'
 
 import { checkUserExists, validateDates } from './utils.js'
 

@@ -31,7 +31,16 @@ export const UserLogout = styled.button`
   border-radius: 10px;
 `;
 
-export const UserIcon = styled.img`
-  width: 50px;
-  height: 50px;
+export const ProjectOrganizerText = styled.div`
+  background-color: inherit;
+  font-size: 30px;
+
+  :hover {
+    display: block;
+    color: #f2f2f2;
+    text-shadow: rgb(204 51 204 / 50%) 5px 0px 6px,
+      rgb(51 204 166 / 50%) -4px 0px 2px, rgb(92 135 214) 10px 0px 8px;
+    transition-duration: 0.4s;
+    transition-timing-function: linear;
+  }
 `;

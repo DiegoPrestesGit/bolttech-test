@@ -8,13 +8,14 @@ import {
   Icon,
   UserContainer,
   UserLogout,
-  UserIcon,
+  ProjectOrganizerText,
 } from "./topbar-styles";
 
 function Topbar() {
   return (
     <Container>
       <Icon src={iconSvg} />
+      <ProjectOrganizerText>Project Organizer</ProjectOrganizerText>
       <UserContainer>
         <UserLogout onClick={() => console.log("LOGGED OUT")}>
           Logout

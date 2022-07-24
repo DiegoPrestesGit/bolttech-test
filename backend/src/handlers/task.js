@@ -25,3 +25,18 @@ export const updateTaskByIdMongo = async (_id, taskData) => {
     return taskData
   } catch (err) {}
 }
+
+export const deleteTaskByIdMongo = async _id => {
+  try {
+    const task = await Task.findOne({ _id })
+
+    if (task === null) return { message: 'task not found' }
+
+    const delationResponse = await Task.deleteOne({ _id })
+
+    if (delationResponse.deletedCount === 0)
+      return { message: 'error finding your task for delation' }
+
+    return { message: 'task deleted successfully' }
+  } catch (err) {}
+}

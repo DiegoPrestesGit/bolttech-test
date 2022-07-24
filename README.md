@@ -7,6 +7,7 @@
 - [x] user registration
 - [ ] user authentication
   - [ ] login
+    - [ ] create a jwt for session
   - [ ] logout
     - [ ] (refresh token?)
 - [x] CRUD of projects
@@ -17,8 +18,8 @@
 - [ ] CRUD of tasks [that are related to the project]
   - [x] add
   - [x] show
-  - [ ] edit
-  - [ ] remove
+  - [x] edit
+  - [x] remove
 
 ### BACKEND (optional)
 

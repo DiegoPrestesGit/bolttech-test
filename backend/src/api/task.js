@@ -1,5 +1,6 @@
 import {
   createTaskMongo,
+  deleteTaskByIdMongo,
   findTaskByProjectMongo,
   updateTaskByIdMongo
 } from '../handlers/task.js'
@@ -73,4 +74,11 @@ export const updateTaskById = async (request, response) => {
   return response.json(updatedTask)
 }
 
-export const deleteTaskById = async (request, response) => {}
+export const deleteTaskById = async (request, response) => {
+  try {
+    const { id } = request.query
+    const delationResponse = await deleteTaskByIdMongo(id)
+
+    return response.json(delationResponse)
+  } catch (err) {}
+}

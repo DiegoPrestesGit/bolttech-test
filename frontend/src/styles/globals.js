@@ -35,6 +35,7 @@ export default createGlobalStyle`
 
     --notification: #f84a4b;
     --nice-purple: #6e86d6;
+    --dark-purple: #6e84f0;
     --nice-yellow: #f9a839;
     --nice-gray: #413f3f;
     --purple-link: #5d80d6;

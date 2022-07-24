@@ -1,8 +1,12 @@
 import { createUserMongo, findUserByEmailMongo } from '../handlers/user.js'
 import bcrypt from 'bcrypt'
+import { checkUserExists } from './utils.js'
 
 export const createUser = async (request, response) => {
   const { email, name, password } = request.body
+
+  const user = await checkUserExists(email)
+  if (user) return response.json({ message: 'user e-mail already taken!' })
 
   const salt = bcrypt.genSaltSync(2)
   const hashedPassword = bcrypt.hashSync(password, salt)

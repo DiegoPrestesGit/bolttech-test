@@ -39,6 +39,7 @@ export const AddTaskButton = styled.button`
   background-color: var(--nice-purple);
 
   :hover {
+    cursor: pointer;
     transition-duration: 0.2s;
     background-color: var(--dark-purple);
     font-weight: bold;

@@ -35,6 +35,7 @@ export const UserLogout = styled.button`
   color: var(--white);
 
   :hover {
+    cursor: pointer;
     transition-duration: 0.2s;
     background-color: var(--dark-purple);
     font-weight: bold;

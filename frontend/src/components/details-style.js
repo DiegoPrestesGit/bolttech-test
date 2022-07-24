@@ -47,10 +47,16 @@ export const DefaultInput = styled.input`
   margin-bottom: 10px;
 `;
 
-export const Description = styled.input``;
+export const SaveChangesButton = styled.button`
+  margin-top: 15px;
+  border-radius: 50px;
+  border: 4px solid var(--white);
+  padding: 5px;
+  background-color: var(--nice-purple);
+  color: var(--white);
+  font-size: 26px;
 
-export const Notes = styled.input``;
-
-export const StartDate = styled.input``;
-
-export const FinishDate = styled.input``;
+  :hover {
+    cursor: pointer;
+  }
+`;

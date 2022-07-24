@@ -41,8 +41,8 @@
 
 ### FRONTEND
 
-- [ ] web app skeleton
-- [ ] implement mock screen
+- [x] web app skeleton
+- [x] implement mock screen
 - [ ] configure axios
 - [ ] remove mocks and fetch data from the backend
 - [ ] task's finish date visible in the tooltip, and a status identifier (todo, doing, done(?)) => Microsoft TODO for inspiration

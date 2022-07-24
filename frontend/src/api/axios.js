@@ -26,14 +26,14 @@ const fullUrl = (route) => `${baseUrl}${route}`;
 
 export const requests = {
   apiGet: (route, params = {}) =>
-    axios.get(fullUrl(route), { params }).then((response) => response.data),
+    axios.get(fullUrl(route), params).then((response) => response.data),
 
   apiPost: (route, body) =>
     axios.post(fullUrl(route), body).then((response) => response.data),
 
   apiPut: (route, body) =>
-    axios.put(fullUrl(route)).then((response) => response.data),
+    axios.put(fullUrl(route), body).then((response) => response.data),
 
-  apiDelete: (route, params) =>
-    axios.delete(fullUrl(route), { params }).then((response) => response.data),
+  apiDelete: (route, params = {}) =>
+    axios.delete(fullUrl(route), params).then((response) => response.data),
 };

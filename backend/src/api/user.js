@@ -3,36 +3,46 @@ import bcrypt from 'bcrypt'
 import { checkUserExists } from './utils.js'
 
 export const createUser = async (request, response) => {
-  const { email, name, password } = request.body
+  try {
+    const { email, name, password } = request.body
 
-  const user = await checkUserExists(email)
-  if (user) return response.json({ message: 'user e-mail already taken!' })
+    const user = await checkUserExists(email)
+    if (user) return response.json({ message: 'user e-mail already taken!' })
 
-  const salt = bcrypt.genSaltSync(2)
-  const hashedPassword = bcrypt.hashSync(password, salt)
+    const salt = bcrypt.genSaltSync(2)
+    const hashedPassword = bcrypt.hashSync(password, salt)
 
-  const newUser = await createUserMongo(email, name, hashedPassword)
+    const { _id } = await createUserMongo(email, name, hashedPassword)
 
-  return response.json(newUser)
+    return response.status(200).json({ email, name, _id })
+  } catch (err) {
+    return response.status(500).json({ message: 'error ;-;' })
+  }
 }
 
 export const findUserByEmail = async (request, response) => {
   const { email } = request.query
   const user = await findUserByEmailMongo(email)
 
-  return response.json(user)
+  return response.status(200).json(user)
 }
 
 export const loginV1 = async (request, response) => {
-  const { email, password } = request.query
-  const user = await findUserByEmailMongo(email)
+  try {
+    const { email, password } = request.query
+    const user = await findUserByEmailMongo(email)
 
-  if (!user) response.status(404).json({ message: 'user not found' })
+    if (!user) response.status(404).json({ message: 'user not found' })
 
-  const isPasswordCorrect = bcrypt.compareSync(password, user.password)
+    const isPasswordCorrect = bcrypt.compareSync(password, user.password)
 
-  if (!isPasswordCorrect)
-    return response.status(401).json({ message: 'invalid password' })
+    if (!isPasswordCorrect)
+      return response.status(401).json({ message: 'invalid password' })
 
-  return response.status(200).json(user)
+    const { name, _id } = user
+
+    return response.status(200).json({ name, email, _id })
+  } catch (err) {
+    return response.status(500).json({ message: 'error ;-;' })
+  }
 }

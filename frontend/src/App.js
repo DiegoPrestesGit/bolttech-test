@@ -1,5 +1,5 @@
 import { Layout, Login } from "./components/index";
-import { StateContext, useStateContext } from "./context/StateContext";
+import { StateContext } from "./context/StateContext";
 import GlobalStyles from "./styles/globals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 

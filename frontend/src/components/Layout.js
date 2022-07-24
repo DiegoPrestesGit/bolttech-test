@@ -1,12 +1,14 @@
 import React from "react";
-import { Navbar, Topbar } from "./index";
+import { Navbar, Topbar, TasksNav } from "./index";
+import { Grid } from "./layout-styles";
 
 function Layout() {
   return (
-    <div>
+    <Grid>
       <Topbar />
       <Navbar />
-    </div>
+      <TasksNav />
+    </Grid>
   );
 }
 

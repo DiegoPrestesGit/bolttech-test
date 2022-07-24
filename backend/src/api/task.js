@@ -1,5 +1,10 @@
-import { createTaskMongo } from '../handlers/task.js'
-import { checkUserExists, validateDates, checkProjectExists } from './utils.js'
+import { createTaskMongo, findTaskByProjectMongo } from '../handlers/task.js'
+import {
+  checkUserExists,
+  validateDates,
+  checkProjectExists,
+  checkUserIsProjectOwner
+} from './utils.js'
 
 export const createTask = async (request, response) => {
   try {
@@ -24,6 +29,28 @@ export const createTask = async (request, response) => {
     return response.json(newTask)
   } catch (err) {}
 }
-export const findAllTasksByProject = (request, response) => {}
-export const updateTaskById = (request, response) => {}
-export const deleteTaskById = (request, response) => {}
+
+export const findAllTasksByProject = async (request, response) => {
+  try {
+    const { userEmail, projectId } = request.query
+
+    const project = await checkProjectExists(projectId)
+
+    if (project === null)
+      return response.json({
+        message: "the project you are trying to add a task doesn't exist!"
+      })
+
+    if (!checkUserIsProjectOwner(userEmail, project))
+      return response.json({
+        message: 'this user is not the owner of this project!'
+      })
+    const tasks = await findTaskByProjectMongo(projectId)
+
+    return response.json(tasks)
+  } catch (err) {}
+}
+
+export const updateTaskById = async (request, response) => {}
+
+export const deleteTaskById = async (request, response) => {}

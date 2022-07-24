@@ -7,3 +7,11 @@ export const createTaskMongo = async (userEmail, taskData) => {
     return project
   } catch (err) {}
 }
+
+export const findTaskByProjectMongo = async projectId => {
+  try {
+    const tasks = await Task.find({ projectId })
+
+    return tasks
+  } catch (err) {}
+}

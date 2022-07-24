@@ -6,5 +6,7 @@ export const checkUserExists = email => findUserByEmailMongo(email)
 export const validateDates = (startDate, finishDate) =>
   new Date(startDate) < new Date(finishDate)
 
-export const checkProjectExists = async (userEmail, _id) =>
-  await findOneProjectsById(userEmail, _id)
+export const checkProjectExists = async _id => await findOneProjectsById(_id)
+
+export const checkUserIsProjectOwner = (userEmail, project) =>
+  project.userEmail === userEmail

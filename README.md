@@ -9,22 +9,22 @@
   - [ ] login
   - [ ] logout
     - [ ] (refresh token?)
-- [ ] CRUD of projects
+- [x] CRUD of projects
   - [x] add
   - [x] show
   - [x] edit
-  - [ ] remove
+  - [x] remove
 - [ ] CRUD of tasks [that are related to the project]
-  - [ ] add
-  - [ ] show
+  - [x] add
+  - [x] show
   - [ ] edit
   - [ ] remove
 
 ### BACKEND (optional)
 
+- [ ] doublecheck business rules in the api layer
 - [ ] input validator as a middleware
 - [ ] jest unit tests
-- [ ] configure gulp
 - [ ] use jsdocs for function documentation
 - [ ] implement PostgreSQL for relationships between users, projects and tasks
 - [ ] docker *maybe laybe do beibe la diroleibe*

@@ -1,7 +1,6 @@
 import Project from '../model/Project.js'
 
-const checkUserIsProjectOwner = (userEmail, project) =>
-  project.userEmail === userEmail
+import { checkUserIsProjectOwner } from '../api/utils.js'
 
 export const createProjectMongo = async (userEmail, projectData) => {
   try {
@@ -54,12 +53,10 @@ export const deleteProjectByIdMongo = async (userEmail, _id) => {
   } catch (err) {}
 }
 
-export const findOneProjectsById = async (userEmail, _id) => {
+export const findOneProjectsById = async _id => {
   const project = await Project.findOne({ _id })
-  if (project === null) return undefined
 
-  if (!checkUserIsProjectOwner(userEmail, project))
-    return { message: 'this user is not the owner of the project!' }
+  if (project === null) return undefined
 
   return project
 }

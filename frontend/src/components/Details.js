@@ -58,11 +58,14 @@ function Details() {
           placeholder="new task deadline"
           type="text"
         ></DefaultInput>
+        <SaveChangesButton onClick={() => console.log("SAVED!")}>
+          Save it!
+        </SaveChangesButton>
       </Container>
     ),
   };
 
-  return detailTypes["project"];
+  return detailTypes["task"];
 }
 
 export default Details;

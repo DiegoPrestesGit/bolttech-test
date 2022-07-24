@@ -5,3 +5,4 @@ export { default as Task } from "./Task";
 export { default as Topbar } from "./Topbar";
 export { default as TasksNav } from "./TasksNav";
 export { default as Details } from "./Details";
+export { default as Login } from "./Login";

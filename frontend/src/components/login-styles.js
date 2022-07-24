@@ -1,30 +1,30 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  grid-area: TD;
-
-  background-color: var(--tertiary);
-  width: 100%;
+export const BiggerContainer = styled.div`
   height: 100%;
-
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-
-  input[type="text"],
-  textarea {
-    background-color: var(--another-dark);
-  }
+  justify-content: center;
 `;
 
-export const TaskHeader = styled.div`
-  margin-top: 5px;
-  margin-bottom: 5px;
-  background-color: inherit;
-  color: var(--white);
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+`;
+
+export const FormHeader = styled.div`
+  width: 450px;
+  text-align: center;
+  font-size: 30px;
   font-weight: bold;
-  font-size: 25px;
+  color: var(--white);
+  margin-bottom: 80px;
 `;
 
 export const InputName = styled.div`
@@ -33,7 +33,6 @@ export const InputName = styled.div`
   font-size: 20px;
   margin-top: 5px;
   color: var(--white);
-  align-self: flex-start;
   margin-left: 10px;
 `;
 
@@ -46,7 +45,7 @@ export const DefaultInput = styled.input`
   margin-bottom: 10px;
 `;
 
-export const SaveChangesButton = styled.button`
+export const SignIn = styled.button`
   margin-top: 15px;
   border-radius: 50px;
   border: 4px solid var(--white);
@@ -58,4 +57,10 @@ export const SaveChangesButton = styled.button`
   :hover {
     cursor: pointer;
   }
+`;
+
+export const Divisor = styled.div`
+  width: 3px;
+  height: 88%;
+  background-color: var(--white);
 `;

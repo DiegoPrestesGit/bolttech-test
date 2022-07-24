@@ -13,7 +13,6 @@ export const TasksContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* background-color: red; */
   width: 100%;
 `;
 

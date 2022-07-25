@@ -8,7 +8,9 @@ function Layout() {
   const { user, setUser } = useStateContext();
   const navigation = useNavigate();
 
-  useEffect(() => {
+  const [itemSelected, setItemSelected] = useState({});
+
+  const verifyUserInContext = () => {
     if (!user || Object.keys(user).length === 0) {
       const userInStorage = localStorage.getItem("user");
 
@@ -18,9 +20,9 @@ function Layout() {
         setUser(JSON.parse(userInStorage));
       }
     }
-  }, [user]);
+  };
 
-  const [itemSelected, setItemSelected] = useState({});
+  useEffect(() => verifyUserInContext(), [user]);
 
   return (
     <Grid>

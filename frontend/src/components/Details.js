@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
+import { createProject } from "../api/service";
+import { useStateContext } from "../context/StateContext";
 
 import {
   Container,
@@ -6,38 +8,81 @@ import {
   TaskHeader,
   InputName,
   SaveChangesButton,
-} from "./details-style";
+} from "./details-styles";
 
 function Details({ itemSelected, setItemSelected }) {
+  const { user } = useStateContext();
+
+  const projectNameRef = useRef();
+  const projectStartDateRef = useRef();
+  const projectEndDateRef = useRef();
+
+  const taskNameRef = useRef();
+  const taskStartDateRef = useRef();
+  const taskEndDateRef = useRef();
+
+  const createNewProject = useCallback(async () => {
+    const body = {
+      projectData: {
+        name: projectNameRef.current,
+        startDate: projectStartDateRef.current,
+        finishDate: projectEndDateRef.current,
+      },
+      userEmail: user.email,
+    };
+
+    console.log("fon");
+    const newProject = await createProject(body);
+    console.log("fon", newProject);
+
+    if (newProject) {
+    } else {
+      // setErrorRegistration(true);
+    }
+  }, [createProject]);
+
   const detailTypes = {
     project: (
       <Container>
-        <TaskHeader>Project Details: Project</TaskHeader>
-        <InputName>task's name:</InputName>
-        <DefaultInput placeholder="new task name" type="text" />
+        {itemSelected.exists ? (
+          <TaskHeader>Project Details: ProjectName</TaskHeader>
+        ) : (
+          <TaskHeader>Create your new project!</TaskHeader>
+        )}
 
-        <InputName>task's start date:</InputName>
+        <InputName>project's name:</InputName>
         <DefaultInput
-          placeholder="new task start date"
+          placeholder="new task name"
           type="text"
+          onChange={(event) => (projectNameRef.current = event.target.value)}
+        />
+
+        <InputName>project's start date:</InputName>
+        <DefaultInput
+          placeholder="new project start date"
+          type="text"
+          onChange={(event) =>
+            (projectStartDateRef.current = event.target.value)
+          }
         ></DefaultInput>
 
-        <InputName>task's deadline:</InputName>
+        <InputName>project's deadline:</InputName>
         <DefaultInput
-          placeholder="new task deadline"
+          placeholder="new project deadline"
           type="text"
+          onChange={(event) => (projectEndDateRef.current = event.target.value)}
         ></DefaultInput>
-        <SaveChangesButton onClick={() => console.log("SAVED!")}>
+        <SaveChangesButton onClick={createNewProject}>
           Save it!
         </SaveChangesButton>
       </Container>
     ),
     task: (
       <Container>
-        {itemSelected.new ? (
-          <TaskHeader>Create you new Task!</TaskHeader>
-        ) : (
+        {itemSelected.exists ? (
           <TaskHeader>Task Details: TaskName</TaskHeader>
+        ) : (
+          <TaskHeader>Create your new Task!</TaskHeader>
         )}
         <InputName>task's name:</InputName>
         <DefaultInput placeholder="new task name" type="text" />
@@ -69,7 +114,7 @@ function Details({ itemSelected, setItemSelected }) {
     ),
   };
 
-  return detailTypes["task"];
+  return detailTypes[itemSelected.inputType || "task"];
   // return detailTypes[inputType];
 }
 

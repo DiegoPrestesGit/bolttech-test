@@ -1,7 +1,8 @@
 import React from "react";
+import { Container } from "./project-styles";
 
-const Project = () => {
-  return <div>Project</div>;
+const Project = ({ project }) => {
+  return <Container>{project.name}</Container>;
 };
 
 export default Project;

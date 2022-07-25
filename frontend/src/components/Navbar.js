@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+import { getProjects } from "../api/service";
 import { Project } from "../components/index";
+import { useStateContext } from "../context/StateContext";
 import {
   Container,
   ProjectsContainer,
@@ -8,20 +10,37 @@ import {
   AddProjectButton,
 } from "./navbar-styles";
 
-function Navbar() {
+function Navbar({ setItemSelected }) {
+  const { user } = useStateContext();
+  const [projects, setProjects] = useState([]);
+
+  const fetchProjects = async () => {
+    const params = {
+      userEmail: JSON.parse(localStorage.getItem("user")).email,
+    };
+    const projects = await getProjects(params);
+    return projects;
+  };
+
+  useEffect(() => {
+    fetchProjects().then((projs) => setProjects(projs));
+  }, []);
+
   return (
     <Container>
       <TopMenu>
-        <AddProjectButton onClick={() => console.log("Add Project")}>
+        <AddProjectButton
+          onClick={() =>
+            setItemSelected({ exists: false, inputType: "project" })
+          }
+        >
           Add Project
         </AddProjectButton>
       </TopMenu>
       <ProjectsContainer>
-        <Project />
-        <Project />
-        <Project />
-        <Project />
-        <Project />
+        {projects?.map((proj) => (
+          <Project project={proj} />
+        ))}
       </ProjectsContainer>
     </Container>
   );

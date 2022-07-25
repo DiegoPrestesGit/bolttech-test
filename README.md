@@ -43,7 +43,7 @@
 
 - [x] web app skeleton
 - [x] implement mock screen
-- [ ] configure axios
+- [x] configure axios
 - [ ] remove mocks and fetch data from the backend
 - [ ] task's finish date visible in the tooltip, and a status identifier (todo, doing, done(?)) => Microsoft TODO for inspiration
 - [ ] tasks added or deleted should not refresh the full page, that is bad for the user

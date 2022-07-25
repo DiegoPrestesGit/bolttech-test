@@ -48,7 +48,7 @@ function Navbar({ setItemSelected }) {
       <Header>IN PROGRESS</Header>
       <ProjectsContainer>
         {projects?.map((proj) => (
-          <Project key={proj._id} project={proj} />
+          <Project forEdition={setItemSelected} key={proj._id} project={proj} />
         ))}
       </ProjectsContainer>
 

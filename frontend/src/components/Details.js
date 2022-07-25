@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from "react";
-import { createProject } from "../api/service";
+import { createProject, modifyProject } from "../api/service";
 import { useStateContext } from "../context/StateContext";
 
 import {
@@ -11,8 +11,6 @@ import {
 } from "./details-styles";
 
 function Details({ itemSelected, setItemSelected }) {
-  const { user } = useStateContext();
-
   const projectNameRef = useRef();
   const projectStartDateRef = useRef();
   const projectEndDateRef = useRef();
@@ -21,6 +19,9 @@ function Details({ itemSelected, setItemSelected }) {
   const taskStartDateRef = useRef();
   const taskEndDateRef = useRef();
 
+  const createOrEditProject = async () =>
+    itemSelected.exists ? await editProject() : await createNewProject();
+
   const createNewProject = useCallback(async () => {
     const body = {
       projectData: {
@@ -28,7 +29,7 @@ function Details({ itemSelected, setItemSelected }) {
         startDate: projectStartDateRef.current,
         finishDate: projectEndDateRef.current,
       },
-      userEmail: user.email,
+      userEmail: JSON.parse(localStorage.getItem("user")).email,
     };
     const newProject = await createProject(body);
 
@@ -38,41 +39,68 @@ function Details({ itemSelected, setItemSelected }) {
     }
   }, [createProject]);
 
+  const editProject = useCallback(async () => {
+    const body = {
+      projectData: {
+        name: projectNameRef.current,
+        startDate: projectStartDateRef.current,
+        finishDate: projectEndDateRef.current,
+      },
+      userEmail: JSON.parse(localStorage.getItem("user")).email,
+      id: itemSelected._id,
+    };
+
+    const modified = await modifyProject(body);
+    console.log("sus", modified);
+  }, [modifyProject]);
+
   const detailTypes = {
     project: (
-      <Container>
-        {itemSelected.exists ? (
-          <TaskHeader>Project Details: ProjectName</TaskHeader>
-        ) : (
-          <TaskHeader>Create your new project!</TaskHeader>
-        )}
+      <>
+        <Container>
+          {itemSelected.exists ? (
+            <TaskHeader>New Project Details: {itemSelected.name}</TaskHeader>
+          ) : (
+            <TaskHeader>Create your new project!</TaskHeader>
+          )}
 
-        <InputName>project's name:</InputName>
-        <DefaultInput
-          placeholder="new task name"
-          type="text"
-          onChange={(event) => (projectNameRef.current = event.target.value)}
-        />
+          <InputName>project's name:</InputName>
+          <DefaultInput
+            placeholder="new task name"
+            type="text"
+            onChange={(event) => (projectNameRef.current = event.target.value)}
+          />
 
-        <InputName>project's start date:</InputName>
-        <DefaultInput
-          placeholder="new project start date"
-          type="text"
-          onChange={(event) =>
-            (projectStartDateRef.current = event.target.value)
-          }
-        ></DefaultInput>
+          <InputName>project's start date:</InputName>
+          <DefaultInput
+            placeholder="new project start date"
+            type="text"
+            onChange={(event) =>
+              (projectStartDateRef.current = event.target.value)
+            }
+          ></DefaultInput>
 
-        <InputName>project's deadline:</InputName>
-        <DefaultInput
-          placeholder="new project deadline"
-          type="text"
-          onChange={(event) => (projectEndDateRef.current = event.target.value)}
-        ></DefaultInput>
-        <SaveChangesButton onClick={createNewProject}>
-          Save it!
-        </SaveChangesButton>
-      </Container>
+          <InputName>project's deadline:</InputName>
+          <DefaultInput
+            placeholder="new project deadline"
+            type="text"
+            onChange={(event) =>
+              (projectEndDateRef.current = event.target.value)
+            }
+          ></DefaultInput>
+          <SaveChangesButton onClick={async () => await createOrEditProject()}>
+            Save it!
+          </SaveChangesButton>
+          {itemSelected.exists && (
+            <>
+              <TaskHeader>Current Data:</TaskHeader>
+              <InputName>name: {itemSelected.name}</InputName>
+              <InputName>start date: {itemSelected.startDate}</InputName>
+              <InputName>deadline: {itemSelected.finishDate}</InputName>
+            </>
+          )}
+        </Container>
+      </>
     ),
     task: (
       <Container>

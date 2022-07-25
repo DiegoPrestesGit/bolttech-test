@@ -23,6 +23,19 @@ export const CheckBox = styled.button`
   }
 `;
 
+export const DeleteButton = styled.button`
+  width: 70px;
+  height: 28px;
+  background-color: var(--nice-purple);
+
+  :hover {
+    transition-duration: 0.2s;
+    background-color: var(--notification);
+    cursor: pointer;
+    font-weight: bold;
+  }
+`;
+
 export const ContainerButton = styled.button`
   background-color: inherit;
   color: var(--white);

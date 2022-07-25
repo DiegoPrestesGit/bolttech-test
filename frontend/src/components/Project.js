@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { modifyProject } from "../api/service";
-import { Container, CheckBox, ContainerButton } from "./project-styles";
+import {
+  Container,
+  CheckBox,
+  ContainerButton,
+  DeleteButton,
+} from "./project-styles";
 
-const Project = ({ project }) => {
+const Project = ({ forEdition, project }) => {
   const userEmail = JSON.parse(localStorage.getItem("user")).email;
   const saveProjectFinished = async () => {
-    console.log("EXEC");
     const projectFinished = {
       projectData: {
         ...project,
@@ -21,7 +25,14 @@ const Project = ({ project }) => {
 
   return (
     <Container>
-      <ContainerButton>{project.name}</ContainerButton>
+      {!project.isFinished && <DeleteButton>delete it!</DeleteButton>}
+      <ContainerButton
+        onClick={() =>
+          forEdition({ ...project, inputType: "project", exists: true })
+        }
+      >
+        {project.name}
+      </ContainerButton>
       {!project.isFinished && (
         <CheckBox type="button" onClick={saveProjectFinished}>
           finish it!

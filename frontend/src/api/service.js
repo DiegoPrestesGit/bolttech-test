@@ -14,7 +14,5 @@ export const createProject = async (body) =>
 export const getProjects = async (params) =>
   await requests.apiGet(routes.project.findAll, { params });
 
-export const modifyProject = async (body) => {
-  const x = await requests.apiPut(routes.project.modify, body);
-  console.log(x);
-};
+export const modifyProject = async (body) =>
+  await requests.apiPut(routes.project.modify, body);

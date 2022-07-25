@@ -1,5 +1,5 @@
 import React from "react";
-import { modifyTask } from "../api/service";
+import { modifyTask, removeTask } from "../api/service";
 
 import {
   CheckBox,
@@ -23,12 +23,17 @@ const Task = ({ forEdition, task }) => {
     return resp;
   };
 
+  const deleteProject = async () => {
+    const userEmail = JSON.parse(localStorage.getItem("user")).email;
+    const params = { userEmail, id: task._id };
+    const res = await removeTask(params);
+    console.log(res);
+  };
+
   return (
     <Container>
       {task && !task.isFinished && (
-        <DeleteButton onClick={() => console.log("DELETE")}>
-          delete it!
-        </DeleteButton>
+        <DeleteButton onClick={() => deleteProject()}>delete it!</DeleteButton>
       )}
       <ContainerButton
         onClick={() => {

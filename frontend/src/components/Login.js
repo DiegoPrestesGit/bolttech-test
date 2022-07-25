@@ -65,6 +65,15 @@ function Login() {
     }
   }, [createUser]);
 
+  const userInLocalStorage = useCallback(() => {
+    const userLocalStorage = JSON.parse(localStorage.getItem("user"));
+
+    if (userLocalStorage) {
+      setUser(userLocalStorage);
+      navigation("/projects");
+    }
+  }, [localStorage]);
+
   return (
     <BiggerContainer>
       <Container>
@@ -80,6 +89,9 @@ function Login() {
           onChange={(event) => (signInPasswordRef.current = event.target.value)}
         />
         <SignIn onClick={userAuthentification}>SIGN IN</SignIn>
+        {localStorage.getItem("user") && (
+          <SignIn onClick={userInLocalStorage}>LocalStorage!</SignIn>
+        )}
       </Container>
       <Divisor />
       <Container>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { modifyProject } from "../api/service";
+import { modifyProject, removeProject } from "../api/service";
 import {
   Container,
   CheckBox,
@@ -18,14 +18,23 @@ const Project = ({ forEdition, project }) => {
       userEmail,
       id: project._id,
     };
-    console.log("XAMA", projectFinished);
+
     const resp = await modifyProject(projectFinished);
     return resp;
   };
 
+  const deleteProject = async () => {
+    const userEmail = JSON.parse(localStorage.getItem("user")).email;
+    const params = { userEmail, id: project._id };
+    const res = await removeProject(params);
+    console.log(res);
+  };
+
   return (
     <Container>
-      {!project.isFinished && <DeleteButton>delete it!</DeleteButton>}
+      {!project.isFinished && (
+        <DeleteButton onClick={deleteProject}>delete it!</DeleteButton>
+      )}
       <ContainerButton
         onClick={() =>
           forEdition({ ...project, inputType: "project", exists: true })

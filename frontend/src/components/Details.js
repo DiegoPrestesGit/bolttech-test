@@ -88,9 +88,13 @@ function Details({ itemSelected, setItemSelected }) {
               (projectEndDateRef.current = event.target.value)
             }
           ></DefaultInput>
-          <SaveChangesButton onClick={async () => await createOrEditProject()}>
-            Save it!
-          </SaveChangesButton>
+          {!itemSelected.isFinished && (
+            <SaveChangesButton
+              onClick={async () => await createOrEditProject()}
+            >
+              Save it!
+            </SaveChangesButton>
+          )}
           {itemSelected.exists && (
             <>
               <TaskHeader>Current Data:</TaskHeader>

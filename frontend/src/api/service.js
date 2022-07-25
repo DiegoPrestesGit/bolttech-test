@@ -11,7 +11,10 @@ export const authenticateUser = async (params) => {
 export const createProject = async (body) =>
   await requests.apiPost(routes.project.create, body);
 
-export const getProjects = async (params) => {
-  const res = await requests.apiGet(routes.project.findAll, { params });
-  return res;
+export const getProjects = async (params) =>
+  await requests.apiGet(routes.project.findAll, { params });
+
+export const modifyProject = async (body) => {
+  const x = await requests.apiPut(routes.project.modify, body);
+  console.log(x);
 };

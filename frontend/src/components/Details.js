@@ -30,10 +30,7 @@ function Details({ itemSelected, setItemSelected }) {
       },
       userEmail: user.email,
     };
-
-    console.log("fon");
     const newProject = await createProject(body);
-    console.log("fon", newProject);
 
     if (newProject) {
     } else {

@@ -57,7 +57,7 @@ function Login() {
 
     if (newUser.name) {
       setUser(newUser);
-      localStorage.setItem("user", newUser);
+      localStorage.setItem("user", JSON.stringify(newUser));
 
       handleNavigation();
     } else {

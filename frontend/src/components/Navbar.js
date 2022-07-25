@@ -8,22 +8,29 @@ import {
   ProjectsContainer,
   TopMenu,
   AddProjectButton,
+  Header,
 } from "./navbar-styles";
 
 function Navbar({ setItemSelected }) {
-  const { user } = useStateContext();
   const [projects, setProjects] = useState([]);
+  const [projectsFinished, setProjectsFinished] = useState([]);
 
   const fetchProjects = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
     const params = {
-      userEmail: JSON.parse(localStorage.getItem("user")).email,
+      userEmail: user.email,
     };
     const projects = await getProjects(params);
     return projects;
   };
 
   useEffect(() => {
-    fetchProjects().then((projs) => setProjects(projs));
+    fetchProjects().then((projs) => {
+      if (projs.length) {
+        setProjectsFinished(projs.filter((proj) => proj.isFinished));
+        setProjects(projs.filter((proj) => proj.isFinished === false));
+      }
+    });
   }, []);
 
   return (
@@ -37,9 +44,18 @@ function Navbar({ setItemSelected }) {
           Add Project
         </AddProjectButton>
       </TopMenu>
+
+      <Header>IN PROGRESS</Header>
       <ProjectsContainer>
         {projects?.map((proj) => (
-          <Project project={proj} />
+          <Project key={proj._id} project={proj} />
+        ))}
+      </ProjectsContainer>
+
+      <Header>DONE</Header>
+      <ProjectsContainer>
+        {projectsFinished?.map((proj) => (
+          <Project key={proj._id} project={proj} />
         ))}
       </ProjectsContainer>
     </Container>

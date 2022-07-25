@@ -6,12 +6,21 @@ export const Container = styled.div`
   padding-top: 5px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: flex-start;
   background-color: var(--tertiary);
   height: 100vh;
   width: 300px;
   color: var(--white);
+`;
+
+export const Header = styled.div`
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: inherit;
+  color: var(--white);
+  font-weight: bold;
+  font-size: 25px;
 `;
 
 export const ProjectsContainer = styled.div`

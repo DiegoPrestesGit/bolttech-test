@@ -49,7 +49,7 @@ export const updateProjectById = async (request, response) => {
   const {
     userEmail,
     id,
-    projectData: { name, startDate, finishDate }
+    projectData: { name, startDate, finishDate, isFinished }
   } = request.body
 
   if (!validateDates(startDate, finishDate))
@@ -60,7 +60,8 @@ export const updateProjectById = async (request, response) => {
   const updatedProject = await updateProjectByIdMongo(userEmail, id, {
     name,
     startDate,
-    finishDate
+    finishDate,
+    isFinished
   })
 
   if (!updatedProject)

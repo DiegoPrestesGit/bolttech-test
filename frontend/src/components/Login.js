@@ -14,7 +14,7 @@ import {
 } from "./login-styles";
 
 function Login() {
-  const { user, setUser } = useStateContext();
+  const { setUser } = useStateContext();
 
   const registerNameRef = useRef();
   const registerEmailRef = useRef();
@@ -34,9 +34,16 @@ function Login() {
       password: signInPasswordRef.current,
     };
 
-    const responseAuth = await authenticateUser(params);
-    setUser(responseAuth);
-    handleNavigation();
+    const user = await authenticateUser(params);
+
+    if (user.name) {
+      setUser(user);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      handleNavigation();
+    } else {
+      // setErrorRegistration(true);
+    }
   }, []);
 
   const userRegistration = useCallback(async () => {
@@ -46,10 +53,12 @@ function Login() {
       password: registerPasswordRef.current,
     };
 
-    const responseUserCreation = await createUser(body);
+    const newUser = await createUser(body);
 
-    if (responseUserCreation.name) {
-      setUser(responseUserCreation);
+    if (newUser.name) {
+      setUser(newUser);
+      localStorage.setItem("user", newUser);
+
       handleNavigation();
     } else {
       // setErrorRegistration(true);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import iconSvg from "../assets/logo.svg";
 import userLogo from "../assets/user-logo.svg";
@@ -11,15 +11,18 @@ import {
   ProjectOrganizerText,
 } from "./topbar-styles";
 
-function Topbar() {
+function Topbar({ setUser }) {
+  const userLogout = useCallback(() => {
+    setUser(undefined);
+    localStorage.clear();
+  }, [setUser]);
+
   return (
     <Container>
       <Icon src={iconSvg} />
       <ProjectOrganizerText>Project Organizer</ProjectOrganizerText>
       <UserContainer>
-        <UserLogout onClick={() => console.log("LOGGED OUT")}>
-          Logout
-        </UserLogout>
+        <UserLogout onClick={userLogout}>Logout</UserLogout>
         <Icon src={userLogo} />
       </UserContainer>
     </Container>

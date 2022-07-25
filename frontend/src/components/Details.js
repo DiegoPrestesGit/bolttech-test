@@ -8,7 +8,7 @@ import {
   SaveChangesButton,
 } from "./details-style";
 
-function Details() {
+function Details({ itemSelected, setItemSelected }) {
   const detailTypes = {
     project: (
       <Container>
@@ -34,7 +34,11 @@ function Details() {
     ),
     task: (
       <Container>
-        <TaskHeader>Task Details: TaskName</TaskHeader>
+        {itemSelected.new ? (
+          <TaskHeader>Create you new Task!</TaskHeader>
+        ) : (
+          <TaskHeader>Task Details: TaskName</TaskHeader>
+        )}
         <InputName>task's name:</InputName>
         <DefaultInput placeholder="new task name" type="text" />
 
@@ -66,6 +70,7 @@ function Details() {
   };
 
   return detailTypes["task"];
+  // return detailTypes[inputType];
 }
 
 export default Details;

@@ -21,7 +21,7 @@ function TasksNav() {
           </AddTaskButton>
         </TaskOptions>
         <TasksContainer>
-          <ProjectName>DOING</ProjectName>
+          <ProjectName>TODO</ProjectName>
           <Task />
           <Task />
           <Task />
@@ -30,7 +30,7 @@ function TasksNav() {
           <Task />
         </TasksContainer>
         <TasksContainer>
-          <ProjectName>TODO</ProjectName>
+          <ProjectName>DONE</ProjectName>
           <Task />
           <Task />
           <Task />

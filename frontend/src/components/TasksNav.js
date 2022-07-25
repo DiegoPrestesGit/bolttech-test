@@ -27,7 +27,6 @@ function TasksNav({ setItemSelected, projectSelected }) {
 
   useEffect(() => {
     fetchTasks().then((tasksResp) => {
-      // console.log("TASKS", tasksResp);
       if (tasksResp.length) {
         setTasks(tasksResp.filter((tk) => tk.isFinished === false));
         setTasksFinished(tasksResp.filter((tk) => tk.isFinished === true));
@@ -55,13 +54,13 @@ function TasksNav({ setItemSelected, projectSelected }) {
         <TasksContainer>
           <ProjectName>TODO</ProjectName>
           {tasks?.map((tk) => (
-            <Task task={tk} key={tk._id} />
+            <Task forEdition={setItemSelected} task={tk} key={tk._id} />
           ))}
         </TasksContainer>
         <TasksContainer>
           <ProjectName>DONE</ProjectName>
           {tasksFinished?.map((tk) => (
-            <Task task={tk} key={tk._id} />
+            <Task forEdition={setItemSelected} task={tk} key={tk._id} />
           ))}
         </TasksContainer>
       </Container>

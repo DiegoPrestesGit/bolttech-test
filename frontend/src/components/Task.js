@@ -8,7 +8,7 @@ import {
   DeleteButton,
 } from "./task-styles";
 
-const Task = ({ task }) => {
+const Task = ({ forEdition, task }) => {
   const saveTaskFinished = async () => {
     const taskFinished = {
       taskData: {
@@ -32,8 +32,7 @@ const Task = ({ task }) => {
       )}
       <ContainerButton
         onClick={() => {
-          // forEdition({ inputType: "project", exists: true });
-          console.log("BUTTTT");
+          forEdition({ ...task, inputType: "task", exists: true });
         }}
       >
         {task && task.name}

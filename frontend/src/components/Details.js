@@ -88,7 +88,20 @@ function Details({ itemSelected, setItemSelected }) {
   }, [createTask]);
 
   const editTask = useCallback(async () => {
-    console.log("editTask");
+    const body = {
+      taskData: {
+        name: taskNameRef.current,
+        description: taskDescRef.current,
+        notes: taskNotesRef.current,
+        startDate: taskStartDateRef.current,
+        finishDate: taskEndDateRef.current,
+      },
+      userEmail: JSON.parse(localStorage.getItem("user")).email,
+      id: itemSelected._id,
+    };
+
+    const res = await modifyTask(body);
+    console.log(res);
   }, [modifyTask]);
 
   const detailTypes = {
@@ -187,6 +200,16 @@ function Details({ itemSelected, setItemSelected }) {
         <SaveChangesButton onClick={async () => await createOrEditTask()}>
           Save it!
         </SaveChangesButton>
+        {itemSelected.exists && (
+          <>
+            <TaskHeader>Current Data:</TaskHeader>
+            <InputName>name: {itemSelected.name}</InputName>
+            <InputName>description: {itemSelected.description}</InputName>
+            <InputName>notes: {itemSelected.notes}</InputName>
+            <InputName>start date: {itemSelected.startDate}</InputName>
+            <InputName>deadline: {itemSelected.finishDate}</InputName>
+          </>
+        )}
       </Container>
     ),
   };

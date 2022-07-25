@@ -1,4 +1,5 @@
 import React from "react";
+import { modifyTask } from "../api/service";
 
 import {
   CheckBox,
@@ -8,9 +9,23 @@ import {
 } from "./task-styles";
 
 const Task = ({ task }) => {
+  const saveTaskFinished = async () => {
+    const taskFinished = {
+      taskData: {
+        ...task,
+        isFinished: true,
+      },
+      userEmail: JSON.parse(localStorage.getItem("user")).email,
+      id: task._id,
+    };
+    console.log("taskFinished", taskFinished);
+    const resp = await modifyTask(taskFinished);
+    return resp;
+  };
+
   return (
     <Container>
-      {!task.isFinished && (
+      {task && !task.isFinished && (
         <DeleteButton onClick={() => console.log("DELETE")}>
           delete it!
         </DeleteButton>
@@ -21,10 +36,10 @@ const Task = ({ task }) => {
           console.log("BUTTTT");
         }}
       >
-        {task.name}
+        {task && task.name}
       </ContainerButton>
       {!task.isFinished && (
-        <CheckBox type="button" onClick={() => console.log("AHEAEUHDDDDD")}>
+        <CheckBox type="button" onClick={() => saveTaskFinished()}>
           finish it!
         </CheckBox>
       )}

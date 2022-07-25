@@ -88,7 +88,7 @@ function Login() {
           type="password"
           onChange={(event) => (signInPasswordRef.current = event.target.value)}
         />
-        <SignIn onClick={userAuthentification}>SIGN IN</SignIn>
+        <SignIn onClick={() => userAuthentification()}>SIGN IN</SignIn>
         {localStorage.getItem("user") && (
           <SignIn onClick={userInLocalStorage}>LocalStorage!</SignIn>
         )}

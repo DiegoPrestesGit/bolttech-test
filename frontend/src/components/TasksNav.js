@@ -27,9 +27,10 @@ function TasksNav({ setItemSelected, projectSelected }) {
 
   useEffect(() => {
     fetchTasks().then((tasksResp) => {
+      // console.log("TASKS", tasksResp);
       if (tasksResp.length) {
-        setTasksFinished(tasksResp.filter((tk) => tk.isFinished));
         setTasks(tasksResp.filter((tk) => tk.isFinished === false));
+        setTasksFinished(tasksResp.filter((tk) => tk.isFinished === true));
       }
     });
   }, [projectSelected._id]);
@@ -60,7 +61,7 @@ function TasksNav({ setItemSelected, projectSelected }) {
         <TasksContainer>
           <ProjectName>DONE</ProjectName>
           {tasksFinished?.map((tk) => (
-            <Task key={tk._id} />
+            <Task task={tk} key={tk._id} />
           ))}
         </TasksContainer>
       </Container>

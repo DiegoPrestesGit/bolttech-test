@@ -64,6 +64,8 @@ function Details({ itemSelected, setItemSelected }) {
     itemSelected.exists ? await editTask() : await createNewTask();
 
   const createNewTask = useCallback(async () => {
+    const projectId = itemSelected.project._id;
+
     const body = {
       taskData: {
         name: taskNameRef.current,
@@ -72,20 +74,21 @@ function Details({ itemSelected, setItemSelected }) {
         startDate: taskStartDateRef.current,
         finishDate: taskEndDateRef.current,
         isFinished: false,
-        projectId: itemSelected.project._id,
+        projectId,
       },
       userEmail: JSON.parse(localStorage.getItem("user")).email,
     };
     const newTask = await createTask(body);
 
     if (newTask) {
+      console.log("newTask created successfully", newTask);
     } else {
       // setErrorRegistration(true);
     }
   }, [createTask]);
 
   const editTask = useCallback(async () => {
-    console.log("EHUAEUHA");
+    console.log("editTask");
   }, [modifyTask]);
 
   const detailTypes = {

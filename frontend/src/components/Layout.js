@@ -8,6 +8,7 @@ function Layout() {
   const { user, setUser } = useStateContext();
   const navigation = useNavigate();
 
+  const [projectSelected, setProjectSelected] = useState({});
   const [itemSelected, setItemSelected] = useState({});
 
   const verifyUserInContext = () => {
@@ -26,8 +27,14 @@ function Layout() {
   return (
     <Grid>
       <Topbar setUser={setUser} />
-      <Navbar setItemSelected={setItemSelected} />
-      <TasksNav setItemSelected={setItemSelected} />
+      <Navbar
+        setProjectSelected={setProjectSelected}
+        setItemSelected={setItemSelected}
+      />
+      <TasksNav
+        projectSelected={projectSelected}
+        setItemSelected={setItemSelected}
+      />
       <Details itemSelected={itemSelected} setItemSelected={setItemSelected} />
     </Grid>
   );

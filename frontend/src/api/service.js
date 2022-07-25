@@ -19,3 +19,15 @@ export const modifyProject = async (body) =>
 
 export const removeProject = async (params) =>
   await requests.apiDelete(routes.project.remove, { params });
+
+export const createTask = async (body) =>
+  await requests.apiPost(routes.task.create, body);
+
+export const getTasks = async (params) =>
+  await requests.apiGet(routes.task.findAll, { params });
+
+export const modifyTask = async (body) =>
+  await requests.apiPut(routes.task.modify, body);
+
+export const removeTask = async (params) =>
+  await requests.apiDelete(routes.task.remove, { params });

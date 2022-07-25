@@ -7,7 +7,7 @@ import {
   DeleteButton,
 } from "./project-styles";
 
-const Project = ({ forEdition, project }) => {
+const Project = ({ forEdition, project, setProjectSelected }) => {
   const userEmail = JSON.parse(localStorage.getItem("user")).email;
   const saveProjectFinished = async () => {
     const projectFinished = {
@@ -36,9 +36,10 @@ const Project = ({ forEdition, project }) => {
         <DeleteButton onClick={deleteProject}>delete it!</DeleteButton>
       )}
       <ContainerButton
-        onClick={() =>
-          forEdition({ ...project, inputType: "project", exists: true })
-        }
+        onClick={() => {
+          setProjectSelected(project);
+          forEdition({ ...project, inputType: "project", exists: true });
+        }}
       >
         {project.name}
       </ContainerButton>

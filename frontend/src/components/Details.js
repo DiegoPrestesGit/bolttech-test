@@ -1,5 +1,10 @@
 import React, { useCallback, useRef } from "react";
-import { createProject, modifyProject } from "../api/service";
+import {
+  createProject,
+  createTask,
+  modifyProject,
+  modifyTask,
+} from "../api/service";
 import { useStateContext } from "../context/StateContext";
 
 import {
@@ -16,6 +21,8 @@ function Details({ itemSelected, setItemSelected }) {
   const projectEndDateRef = useRef();
 
   const taskNameRef = useRef();
+  const taskDescRef = useRef();
+  const taskNotesRef = useRef();
   const taskStartDateRef = useRef();
   const taskEndDateRef = useRef();
 
@@ -50,9 +57,36 @@ function Details({ itemSelected, setItemSelected }) {
       id: itemSelected._id,
     };
 
-    const modified = await modifyProject(body);
-    console.log("sus", modified);
+    await modifyProject(body);
   }, [modifyProject]);
+
+  const createOrEditTask = async () =>
+    itemSelected.exists ? await editTask() : await createNewTask();
+
+  const createNewTask = useCallback(async () => {
+    const body = {
+      taskData: {
+        name: taskNameRef.current,
+        description: taskDescRef.current,
+        notes: taskNotesRef.current,
+        startDate: taskStartDateRef.current,
+        finishDate: taskEndDateRef.current,
+        isFinished: false,
+        projectId: itemSelected.project._id,
+      },
+      userEmail: JSON.parse(localStorage.getItem("user")).email,
+    };
+    const newTask = await createTask(body);
+
+    if (newTask) {
+    } else {
+      // setErrorRegistration(true);
+    }
+  }, [createTask]);
+
+  const editTask = useCallback(async () => {
+    console.log("EHUAEUHA");
+  }, [modifyTask]);
 
   const detailTypes = {
     project: (
@@ -109,34 +143,45 @@ function Details({ itemSelected, setItemSelected }) {
     task: (
       <Container>
         {itemSelected.exists ? (
-          <TaskHeader>Task Details: TaskName</TaskHeader>
+          <TaskHeader>Task Details: {itemSelected.name}</TaskHeader>
         ) : (
           <TaskHeader>Create your new Task!</TaskHeader>
         )}
         <InputName>task's name:</InputName>
-        <DefaultInput placeholder="new task name" type="text" />
+        <DefaultInput
+          onChange={(event) => (taskNameRef.current = event.target.value)}
+          placeholder="new task name"
+          type="text"
+        />
 
         <InputName>task's description:</InputName>
         <DefaultInput
+          onChange={(event) => (taskDescRef.current = event.target.value)}
           placeholder="new task description"
           type="text"
         ></DefaultInput>
 
         <InputName>task's notes:</InputName>
-        <DefaultInput placeholder="new task notes" type="text"></DefaultInput>
+        <DefaultInput
+          onChange={(event) => (taskNotesRef.current = event.target.value)}
+          placeholder="new task notes"
+          type="text"
+        ></DefaultInput>
 
         <InputName>task's start date:</InputName>
         <DefaultInput
+          onChange={(event) => (taskStartDateRef.current = event.target.value)}
           placeholder="new task start date"
           type="text"
         ></DefaultInput>
 
         <InputName>task's deadline:</InputName>
         <DefaultInput
+          onChange={(event) => (taskEndDateRef.current = event.target.value)}
           placeholder="new task deadline"
           type="text"
         ></DefaultInput>
-        <SaveChangesButton onClick={() => console.log("SAVED!")}>
+        <SaveChangesButton onClick={async () => await createOrEditTask()}>
           Save it!
         </SaveChangesButton>
       </Container>
@@ -144,7 +189,6 @@ function Details({ itemSelected, setItemSelected }) {
   };
 
   return detailTypes[itemSelected.inputType || "task"];
-  // return detailTypes[inputType];
 }
 
 export default Details;

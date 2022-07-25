@@ -11,7 +11,7 @@ import {
   Header,
 } from "./navbar-styles";
 
-function Navbar({ setItemSelected }) {
+function Navbar({ setItemSelected, setProjectSelected }) {
   const [projects, setProjects] = useState([]);
   const [projectsFinished, setProjectsFinished] = useState([]);
 
@@ -48,14 +48,24 @@ function Navbar({ setItemSelected }) {
       <Header>IN PROGRESS</Header>
       <ProjectsContainer>
         {projects?.map((proj) => (
-          <Project forEdition={setItemSelected} key={proj._id} project={proj} />
+          <Project
+            setProjectSelected={setProjectSelected}
+            forEdition={setItemSelected}
+            key={proj._id}
+            project={proj}
+          />
         ))}
       </ProjectsContainer>
 
       <Header>DONE</Header>
       <ProjectsContainer>
         {projectsFinished?.map((proj) => (
-          <Project forEdition={setItemSelected} key={proj._id} project={proj} />
+          <Project
+            setProjectSelected={setProjectSelected}
+            forEdition={setItemSelected}
+            key={proj._id}
+            project={proj}
+          />
         ))}
       </ProjectsContainer>
     </Container>

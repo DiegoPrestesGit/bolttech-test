@@ -33,3 +33,4 @@ The application should include the following features:
 
 - [ ] use Tailwind;
 - [ ] you have a total of 2 days (or 30 hours);
+- [ ] use docker-compose and create a containerized environment;

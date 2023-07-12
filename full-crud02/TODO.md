@@ -1,5 +1,3 @@
-# FULLSTACK EXERCISES
-
 ## FULL CRUD: BASIC
 
 This challenge involves the creation of a multi-user task manager web application.

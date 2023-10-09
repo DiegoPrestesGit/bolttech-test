@@ -44,20 +44,54 @@ export const Project = sequelizeConn.define('project', {
     userEmail: {
         type: STRING,
         allowNull: false,
-        unique: true,
     },
     isFinished: {
         type: BOOLEAN,
         defaultValue: false,
-        name: STRING,
-        startDate: STRING,
-        finishDate: STRING,
+    },
+    startDate: {
+        type: STRING,
+        allowNull: false,
+    }, 
+    endDate: {
+        type: STRING,
+        allowNull: true,
     }
 },
     {
         createdAt: true, updatedAt: true
     }
 )
+
+export const Task = sequelizeConn.define('task', {
+    id: {
+        type: UUID,
+        defaultValue: UUIDV4,
+        allowNull: false,
+        primaryKey: true,
+    },
+    description: {
+        type: STRING,
+    },
+    notes: {
+        type: STRING,
+    },
+    startDate: {
+        type: STRING,
+    },
+    endDate: {
+        type: STRING,
+    },
+},
+    { createdAt: true, updatedAt: true }
+)
+
+Project.hasMany(Task, {
+    foreignKey: 'projectID',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+})
+Task.belongsTo(Project)
 
 export const connectDB = async () => {
     try {

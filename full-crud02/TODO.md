@@ -3,9 +3,9 @@
 This challenge involves the creation of a multi-user task manager web application.
 The application should include the following features:
 - [x] User Registration
-- [ ] User Authentication (login/logout)
-- [ ] Visualize, add, edit and remove user projects
-- [ ] Visualize, add, edit and remove tasks associated with the projects
+- [x] User Authentication (login/logout)
+- [x] Visualize, add, edit and remove user projects
+- [x] Visualize, add, edit and remove tasks associated with the projects
 
 ### Requirements
 
